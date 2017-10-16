@@ -31,5 +31,45 @@ for ki=2:length(time)
 
 So now we have the simulated data of N from time 0:25 with r=0.4 and K=1000, starting with N_0=10
 
+% now try to change the model using different r, K and N_0 %
+K=1000
+r=2.1
+N_0=10
+N_r21= zeros(0, length(time))
+N_r21(1, 1)=N_0
+for ki=2:length(time)
+  N_r21(1, ki)=N_r21(1, ki-1) + r * N_r21(1, ki-1) * (1- N_r21(1, ki-1)/K)
+ end
+
+plot(time, N, "k", time, N_r21, "r")
+
+% N_r21 describe a population confined by K and genereating cycles between 823 and 1129 %
+Solution of the continuous-time logistic model
+n(t) = exp(r*t + r*c)/ 1 + exp(r*t +r*c)/K
+     = exp(r * t) N_0/ 1 - N_0/K + exp(r * t) N_0/K
+
+% use new equation to calculate population growth with the same parameter and see if there are any differences %
+r =0.4
+N_0=10
+K=1000
+N_eq2=zeros(0, length(time))
+N_eq2(1, 1)=N_0
+
+for ki=2:length(time)
+t=time(1, ki)
+N_eq2(1, ki)=(exp(r * t) * N_eq2(1, ki-1))/( 1 - N_eq2(1, ki-1)/K + (exp(r * t) * N_eq2(1, ki-1))/K)
+end
+
+plot(time, N, "k", time, N_eq2, "r")
+
+
+% the continuous model reach K much faster than the discrete time model %
+
+
+
+
+
+
+
 
 
