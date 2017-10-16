@@ -1,0 +1,35 @@
+Construct the basic logistic model in Octave
+1) the logistic model is a recursive model descrbing growth of a popultion
+it has a few parameters
+N = popultion size (is a number)
+r = growth rate (#/time)
+K = carrying capacity (is a number)
+
+The basic model derived from Otto (2007):
+
+n(t + 1) = n(t) + r n(t) (1 - n(t)/K)
+dn/dt = r n(t) (1- n(t)/K)
+
+First we build a model of expoential growth
+time=[0:0.1:20] ### interval of 0.1 from 1 to 20, 200 steps
+r= 0.1
+N_0=100
+N=N_0 * exp(r*time) ### recursively calculate N with respect to each time point
+plot(time, N, "-") ### plot N against time with solid line
+
+So what about the logistic curve?
+r =0.4
+N_0=10
+K=1000
+time=[0:1:25]
+% Because the equation is almost impossible to factor out the term n(t), se have to use a for loop to generate the data of N% 
+N= zeros(0, length(time))
+N(1, 1)=N_0
+for ki=2:length(time)
+  N(1, ki)=N(1, ki-1) + r * N(1, ki-1) * (1- N(1, ki-1)/K)
+ end
+
+So now we have the simulated data of N from time 0:25 with r=0.4 and K=1000, starting with N_0=10
+
+
+
