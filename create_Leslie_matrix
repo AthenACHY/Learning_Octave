@@ -9,7 +9,8 @@ L=[0 2.3 1.4;
 N_0=1
 n=[1; 0; 0]
 
-% The population grows as L^t *n foreach time step
+% write a function that can take in Lesile matrix and the initial population at any sizes and output the population after n time-steps %
+% The population grows as L^t *n for each time step
 
 function n_t = f(n_0, L, time_steps)
   n_now=n_0
