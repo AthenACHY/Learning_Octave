@@ -1,0 +1,23 @@
+% to create a Lesile matrix for age-structured population. %
+% We can compute how each age class grow in a population given we know the transition rate between class and the reproductive rate of each class %
+
+L=[0 2.3 1.4;
+  0.4 0 0;
+  0 0.6 0]
+  
+% Starting with a juvenline of 1
+N_0=1
+n=[1; 0; 0]
+
+% The population grows as L^t *n foreach time step
+
+function n_t = f(n_0, L, time_steps)
+  n_now=n_0
+  for i = 1:time_steps
+    n_next=L*n_now
+    n_now=n_next
+  end 
+  n_t=n_next
+end
+ 
+ n_test= f(n_1, L, 20)
